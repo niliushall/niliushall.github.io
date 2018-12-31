@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1. 计算机网络分类（按规模） 局域网：覆盖范围10公里以下，一般以学校、公司等为单位组建 广域网：覆盖范围几十公里到几万公里，横跨国家、大洲，形成全球性计算机网络 城域网：位于局域网与广域网之间，覆盖范围几十公里  2. 协议分层1）OSI参考模型该模型分为7层，只是对各层的作用做了一系列粗略的界定，并没有对协议和接口进行详细的定义。    层号 分层名称 功能     7 应用层 为应用程序提">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【计算机网络】网络基础">
+<meta property="og:url" content="http://yoursite.com/2018/06/21/【计算机网络】网络基础/index.html">
+<meta property="og:site_name" content="niliushall">
+<meta property="og:description" content="1. 计算机网络分类（按规模） 局域网：覆盖范围10公里以下，一般以学校、公司等为单位组建 广域网：覆盖范围几十公里到几万公里，横跨国家、大洲，形成全球性计算机网络 城域网：位于局域网与广域网之间，覆盖范围几十公里  2. 协议分层1）OSI参考模型该模型分为7层，只是对各层的作用做了一系列粗略的界定，并没有对协议和接口进行详细的定义。    层号 分层名称 功能     7 应用层 为应用程序提">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-21T06:15:32.695Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【计算机网络】网络基础">
+<meta name="twitter:description" content="1. 计算机网络分类（按规模） 局域网：覆盖范围10公里以下，一般以学校、公司等为单位组建 广域网：覆盖范围几十公里到几万公里，横跨国家、大洲，形成全球性计算机网络 城域网：位于局域网与广域网之间，覆盖范围几十公里  2. 协议分层1）OSI参考模型该模型分为7层，只是对各层的作用做了一系列粗略的界定，并没有对协议和接口进行详细的定义。    层号 分层名称 功能     7 应用层 为应用程序提">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/21/【计算机网络】网络基础/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>【计算机网络】网络基础 | niliushall</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d4924a2b4a414771c911ff4d6752e5cb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">niliushall</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/21/【计算机网络】网络基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="niliushall">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/picture.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="niliushall">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【计算机网络】网络基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-21 14:14:22 / Modified: 14:15:32" itemprop="dateCreated datePublished" datetime="2018-06-21T14:14:22+08:00">2018-06-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机网络/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-计算机网络分类（按规模）"><a href="#1-计算机网络分类（按规模）" class="headerlink" title="1. 计算机网络分类（按规模）"></a>1. 计算机网络分类（按规模）</h3><ul>
+<li><strong>局域网</strong>：覆盖范围10公里以下，一般以学校、公司等为单位组建</li>
+<li><strong>广域网</strong>：覆盖范围几十公里到几万公里，横跨国家、大洲，形成全球性计算机网络</li>
+<li><strong>城域网</strong>：位于局域网与广域网之间，覆盖范围几十公里</li>
+</ul>
+<h3 id="2-协议分层"><a href="#2-协议分层" class="headerlink" title="2. 协议分层"></a>2. 协议分层</h3><h4 id="1）OSI参考模型"><a href="#1）OSI参考模型" class="headerlink" title="1）OSI参考模型"></a>1）OSI参考模型</h4><p>该模型分为7层，只是对各层的作用做了一系列粗略的界定，并没有对协议和接口进行详细的定义。</p>
+<table>
+<thead>
+<tr>
+<th>层号</th>
+<th>分层名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>应用层</td>
+<td>为应用程序提供服务并规定应用程序中通信相关的细节。包括文件传输（FTP）、电子邮件（SMPT）、远程登陆（Telnet）等协议</td>
+</tr>
+<tr>
+<td>6</td>
+<td>表示层</td>
+<td>主要负责数据格式的转换（设备固有数据格式-&gt;网络标准传输格式）。将应用处理的信息转换为适合网络传输的格式，或将来自下一层的数据转换为上层能够处理的格式。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>会话层</td>
+<td>建立和断开通信连接</td>
+</tr>
+<tr>
+<td>4</td>
+<td>传输层</td>
+<td>管理两个节点间的数据传输，确保数据被可靠的传送到目标地址</td>
+</tr>
+<tr>
+<td>3</td>
+<td>网络层</td>
+<td>网络寻址、路由选择</td>
+</tr>
+<tr>
+<td>2</td>
+<td>数据链路层</td>
+<td>负责物理层面上互连的、节点间的通信传输（数据帧的生成与接收）</td>
+</tr>
+<tr>
+<td>！</td>
+<td>物理层</td>
+<td>负责0、1与电压高低、光的闪灭之间的转换</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-TCP-IP四层模型"><a href="#2-TCP-IP四层模型" class="headerlink" title="2) TCP/IP四层模型"></a>2) TCP/IP四层模型</h4><table>
+<thead>
+<tr>
+<th>层号</th>
+<th>分层名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>应用层</td>
+<td>决定了向用户提供应用服务时通信活动。对应OSI的应用层、表示层、会话层</td>
+</tr>
+<tr>
+<td>3</td>
+<td>传输层</td>
+<td>提供处于网络连接中的两台计算机之间的数据传输。包含TCP、UDP</td>
+</tr>
+<tr>
+<td>2</td>
+<td>网络层</td>
+<td>处理网络上流动的数据包，选择传输路线并将数据包传送给对方</td>
+</tr>
+<tr>
+<td>1</td>
+<td>数据链路层</td>
+<td>处理连接网络的硬件部分，对应于OSI的数据链路层、物理层</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-传输方式的分类"><a href="#3-传输方式的分类" class="headerlink" title="3. 传输方式的分类"></a>3. 传输方式的分类</h3><h4 id="1）面向有连接型与面向无连接型"><a href="#1）面向有连接型与面向无连接型" class="headerlink" title="1）面向有连接型与面向无连接型"></a>1）面向有连接型与面向无连接型</h4><ul>
+<li><p>面向有连接型</p>
+<p>  在发送数据之前，需要在两台主机之间建立一条通信线路。在通信传输前后，需要进行建立和断开连接的处理。如果与对端之间无法通信，就可以避免发送无谓的数据。</p>
+</li>
+<li><p>面向无连接型</p>
+<p>  不需要建立和断开连接，发送方可以在任何时候自由发送数据，接收端也不知道自己何时会接收数据。因此接收端需要时常确认是否收到了数据。（不需要确认对端是否存在，即使对方不存在，也可以发送数据）</p>
+</li>
+</ul>
+<h4 id="2）电路交换与分组交换"><a href="#2）电路交换与分组交换" class="headerlink" title="2）电路交换与分组交换"></a>2）电路交换与分组交换</h4><ul>
+<li><p>电路交换</p>
+<p>  通信之前，在通信双方之间建立一条被双方独占的物理通路。建立连接以后，用户可以一直使用这条电路，直至该连接被断开为止。</p>
+<p>  然而，如果用户独占一条线路，其他用户只能等该用户使用完毕后才有机会使用这条线路收发数据，造成效率低下。</p>
+</li>
+<li><p>分组交换</p>
+<p>  将数据分成多个数据包，按照一定的顺序排列后发送。每个数据包首部都有发送端与接收端的地址，所以即使一条线路为多用户提供服务，也可以明确区分每个数据包的收发地址。通信中的线路为共享线路。</p>
+<p>  分组交换大致流程：发送端将数据分组发送给路由器（分组交换机），路由器收到数据后，先缓存到自己的缓冲区，再转发给目标计算机。</p>
+</li>
+</ul>
+<h4 id="3）根据接收端数量分类"><a href="#3）根据接收端数量分类" class="headerlink" title="3）根据接收端数量分类"></a>3）根据接收端数量分类</h4><ul>
+<li><p>单播（Unicast）</p>
+<p>  1对1通信</p>
+</li>
+<li><p>广播（Broadcast）</p>
+<p>  将消息从一台主机发送给与之相连的所有其他主机。进行广播通信的计算机有一个广播范围，只有在这个范围里的计算机才能接收到广播消息，该范围称为广播域。</p>
+</li>
+<li><p>多播</p>
+<p>  多播与广播类似，也是将消息发送给多个主机，不同在于多播要限定某一组主机作为接收端。</p>
+</li>
+<li><p>任播</p>
+<p>  在特定的多台主机中选出一台作为接收端的一种通信方式。与多播的不同在于：任播从目标主机群中选择一台最符合网络条件的主机作为目标主机发送消息。通常，所被选中的那台特定主机将返回一个单播信号，随后发送端主机会只跟这台主机进行通信。（应用：DNS根域名解析服务器）</p>
+</li>
+</ul>
+<h3 id="4-网络的构成要素"><a href="#4-网络的构成要素" class="headerlink" title="4.网络的构成要素"></a>4.网络的构成要素</h3><h4 id="1）-通信媒介与数据链路"><a href="#1）-通信媒介与数据链路" class="headerlink" title="1） 通信媒介与数据链路"></a>1） 通信媒介与数据链路</h4><h4 id="2）-网卡"><a href="#2）-网卡" class="headerlink" title="2） 网卡"></a>2） 网卡</h4><p>网络接口卡（NIC），又叫网络适配器，LAN卡。任何一台计算机在连接网络时，必须使用网卡。</p>
+<h4 id="3）中继器"><a href="#3）中继器" class="headerlink" title="3）中继器"></a>3）中继器</h4><p>中继器是OSI模型的第1层——物理层面上延长网络的设备又电缆传过来的信号由中继器的波形调整和放大后再传给另一个电缆。可以在不同媒介之间完成转接，但不能在传输速度不同的媒介之间进行转发。</p>
+<p>通过中继器进行的网络延长，其距离也并非可以无线扩大。例如一个10Mbps的以太网最多可以由4个中继器分段连接，而一个100Mbps的以太网最多只能连2个中继器。</p>
+<p>有些中继器可以提供多个端口的服务，每个端口都可以成为一个中继器。</p>
+<h4 id="4）网桥-2层交换机"><a href="#4）网桥-2层交换机" class="headerlink" title="4）网桥/2层交换机"></a>4）网桥/2层交换机</h4><p>网桥是OSI模型的第二层——数据链路层上连接两个网络的设备。它能识别数据链路层中的数据帧，并将这些数据帧临时存在内存中，再重新生成信号作为一个全新的帧转发给相邻的另一个网段。由于能够存储这些数据帧，网桥能够连接传输速率不同的数据链路，并且不限制连接网段的个数。</p>
+<h4 id="5）路由器-3层交换机"><a href="#5）路由器-3层交换机" class="headerlink" title="5）路由器/3层交换机"></a>5）路由器/3层交换机</h4><p>路由器实在OSI模型的第三层——网络层上连接两个网路，并对分组报文进行转发的设备。网桥根据物理地址（MAC地址）进行处理，而路由器则是根据IP地址进行处理。由此，网络层中的地址就成了IP地址。</p>
+<h4 id="6-4-7层交换机"><a href="#6-4-7层交换机" class="headerlink" title="6)4~7层交换机"></a>6)4~7层交换机</h4><p>负责处理OSI模型中从传输层到应用层的数据。负责带宽控制等，应用场景有加速器、防火墙等。</p>
+<h4 id="7）网关"><a href="#7）网关" class="headerlink" title="7）网关"></a>7）网关</h4><p>网关是OSI模型中负责从传输层的数据进行转换和转发的设备。虽然与4~7层交换机都是处理传输层及以上的数据，但是不同在于网关不仅转发数据，还负责对数据进行转换，在两个不同的协议之间进行翻译，最终实现两者之间的通信。</p>
+
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束<i class="fa fa-paw"></i>感谢阅读------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/13/解决ubuntu18读写ntfs文件/" rel="next" title="解决ubuntu18读写ntfs文件">
+                <i class="fa fa-chevron-left"></i> 解决ubuntu18读写ntfs文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/21/【计算机网络】TCP-IP通信处理过程/" rel="prev" title="【计算机网络】TCP/IP通信处理过程">
+                【计算机网络】TCP/IP通信处理过程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/picture.png"
+                alt="niliushall" />
+            
+              <p class="site-author-name" itemprop="name">niliushall</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/niliushall" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="sdwllinux@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/liushall" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-计算机网络分类（按规模）"><span class="nav-number">1.</span> <span class="nav-text">1. 计算机网络分类（按规模）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-协议分层"><span class="nav-number">2.</span> <span class="nav-text">2. 协议分层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）OSI参考模型"><span class="nav-number">2.1.</span> <span class="nav-text">1）OSI参考模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-TCP-IP四层模型"><span class="nav-number">2.2.</span> <span class="nav-text">2) TCP/IP四层模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-传输方式的分类"><span class="nav-number">3.</span> <span class="nav-text">3. 传输方式的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）面向有连接型与面向无连接型"><span class="nav-number">3.1.</span> <span class="nav-text">1）面向有连接型与面向无连接型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）电路交换与分组交换"><span class="nav-number">3.2.</span> <span class="nav-text">2）电路交换与分组交换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3）根据接收端数量分类"><span class="nav-number">3.3.</span> <span class="nav-text">3）根据接收端数量分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-网络的构成要素"><span class="nav-number">4.</span> <span class="nav-text">4.网络的构成要素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）-通信媒介与数据链路"><span class="nav-number">4.1.</span> <span class="nav-text">1） 通信媒介与数据链路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）-网卡"><span class="nav-number">4.2.</span> <span class="nav-text">2） 网卡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3）中继器"><span class="nav-number">4.3.</span> <span class="nav-text">3）中继器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4）网桥-2层交换机"><span class="nav-number">4.4.</span> <span class="nav-text">4）网桥/2层交换机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5）路由器-3层交换机"><span class="nav-number">4.5.</span> <span class="nav-text">5）路由器/3层交换机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-4-7层交换机"><span class="nav-number">4.6.</span> <span class="nav-text">6)4~7层交换机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7）网关"><span class="nav-number">4.7.</span> <span class="nav-text">7）网关</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">niliushall</span>
+
+  
+
+  
+</div>
+
+<!--
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+</div>
+
+  #<div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+<
+  <span class="post-meta-divider">|</span>
+
+
+# 
+  #<div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+#
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.数据包首部每个分层中都会对所发送的数据附加一个首部，其中包含了该层必要的信息，如发送端地址、接收端地址以及协议等相关信息。  2.发送数据包1）应用程序处理进行编码处理（相当于表示层功能），管理何时建立通信何时发送数据等功能（相当于会话层功能）。建立连接后将数据发送给下一层的TCP，再做实际的转发处理。 2）TCP模块的处理TCP根据应用的提示，负责建立连接、发送数据以及断开连接。提供可靠传输">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【计算机网络】TCP&#x2F;IP通信处理过程">
+<meta property="og:url" content="http://yoursite.com/2018/06/21/【计算机网络】TCP-IP通信处理过程/index.html">
+<meta property="og:site_name" content="niliushall">
+<meta property="og:description" content="1.数据包首部每个分层中都会对所发送的数据附加一个首部，其中包含了该层必要的信息，如发送端地址、接收端地址以及协议等相关信息。  2.发送数据包1）应用程序处理进行编码处理（相当于表示层功能），管理何时建立通信何时发送数据等功能（相当于会话层功能）。建立连接后将数据发送给下一层的TCP，再做实际的转发处理。 2）TCP模块的处理TCP根据应用的提示，负责建立连接、发送数据以及断开连接。提供可靠传输">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://img-blog.csdn.net/20180619215647387?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180619215600677?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180619215636897?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2018-06-21T06:17:11.868Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【计算机网络】TCP&#x2F;IP通信处理过程">
+<meta name="twitter:description" content="1.数据包首部每个分层中都会对所发送的数据附加一个首部，其中包含了该层必要的信息，如发送端地址、接收端地址以及协议等相关信息。  2.发送数据包1）应用程序处理进行编码处理（相当于表示层功能），管理何时建立通信何时发送数据等功能（相当于会话层功能）。建立连接后将数据发送给下一层的TCP，再做实际的转发处理。 2）TCP模块的处理TCP根据应用的提示，负责建立连接、发送数据以及断开连接。提供可靠传输">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180619215647387?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/21/【计算机网络】TCP-IP通信处理过程/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>【计算机网络】TCP/IP通信处理过程 | niliushall</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d4924a2b4a414771c911ff4d6752e5cb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">niliushall</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/21/【计算机网络】TCP-IP通信处理过程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="niliushall">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/picture.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="niliushall">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【计算机网络】TCP/IP通信处理过程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-21 14:16:21 / Modified: 14:17:11" itemprop="dateCreated datePublished" datetime="2018-06-21T14:16:21+08:00">2018-06-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机网络/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-数据包首部"><a href="#1-数据包首部" class="headerlink" title="1.数据包首部"></a>1.数据包首部</h3><p>每个分层中都会对所发送的数据附加一个首部，其中包含了该层必要的信息，如发送端地址、接收端地址以及协议等相关信息。<br><img src="https://img-blog.csdn.net/20180619215647387?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="1"></p>
+<hr>
+<h3 id="2-发送数据包"><a href="#2-发送数据包" class="headerlink" title="2.发送数据包"></a>2.发送数据包</h3><h4 id="1）应用程序处理"><a href="#1）应用程序处理" class="headerlink" title="1）应用程序处理"></a>1）应用程序处理</h4><p>进行编码处理（相当于表示层功能），管理何时建立通信何时发送数据等功能（相当于会话层功能）。建立连接后将数据发送给下一层的TCP，再做实际的转发处理。</p>
+<h4 id="2）TCP模块的处理"><a href="#2）TCP模块的处理" class="headerlink" title="2）TCP模块的处理"></a>2）TCP模块的处理</h4><p>TCP根据应用的提示，负责建立连接、发送数据以及断开连接。提供可靠传输。</p>
+<p>在数据前端附加一个TCP首部，包括源端口号、目标端口号（用以识别发送主机跟接收主机上的应用）、序号以及校验和（判断数据是否被损坏）。再将数据发送给IP。</p>
+<h4 id="3）IP模块的处理"><a href="#3）IP模块的处理" class="headerlink" title="3）IP模块的处理"></a>3）IP模块的处理</h4><p>IP在TCP传过来的数据前附加IP首部，包括接收端IP、发送端IP、上层协议等信息。</p>
+<p>IP包生成后，参考路由控制表决定接收此IP包的路由或主机。随后将数据发送给连接这些路由器或主机网络接口驱动程序，以实现真正的数据发送。</p>
+<p>如果不知道接收端MAC地址，则通过ARP查找。</p>
+<h4 id="4）网络接口（以太网驱动）的处理"><a href="#4）网络接口（以太网驱动）的处理" class="headerlink" title="4）网络接口（以太网驱动）的处理"></a>4）网络接口（以太网驱动）的处理</h4><p>在接收到的数据前面附加以太网首部进行发送处理。以太网首部中包含接收端MAC地址、发送端MAC地址以及标志以太网类型的以太网数据协议。发送处理中的FCS由硬件计算，添加到包的最后。FCS为了判断数据包在传输过程中是否被破坏。<br><img src="https://img-blog.csdn.net/20180619215600677?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="2"></p>
+<hr>
+<h3 id="3-经过数据链路的包"><a href="#3-经过数据链路的包" class="headerlink" title="3.经过数据链路的包"></a>3.经过数据链路的包</h3><p>包流动时，从前往后依次被附加了以太网包首部、IP包首部、TCP包首部（或UDP包首部）以及应用自己的包首和数据。而包的最后则被添加了以太网包尾。</p>
+<p>每个包首部中至少包含两个信息：一个是发送端和接收端地址，另一个是上一层的协议类型。</p>
+<p>经过每个协议分层时，都必须有识别包发送端和接收端的信息。以太网会用MAC地址，IP会用IP地址，而TCP/IP则会用端口号作为识别两端主机的地址。</p>
+<hr>
+<h3 id="4-数据包接收处理"><a href="#4-数据包接收处理" class="headerlink" title="4.数据包接收处理"></a>4.数据包接收处理</h3><p>包的接收流程是发送流程的逆序过程。</p>
+<h4 id="1）网络接口（以太网驱动）的处理"><a href="#1）网络接口（以太网驱动）的处理" class="headerlink" title="1）网络接口（以太网驱动）的处理"></a>1）网络接口（以太网驱动）的处理</h4><p>主机接收到以太网包以后，首先从包首部找到MAC地址判断是否为发给自己的包。如果不是则丢弃数据。</p>
+<p>如果是发给自己的包，就查找包首部中的类型域，确定传送过来的数据类型，传给相应的子程序进行处理（若是IP类型作为传给IP，若是ARP类型则传给ARP处理），若没有对应的类型，则丢弃数据。</p>
+<h4 id="2）IP模块的处理"><a href="#2）IP模块的处理" class="headerlink" title="2）IP模块的处理"></a>2）IP模块的处理</h4><p>IP模块收到包以后，做相似处理。如果包首部的IP地址与自己的IP地址匹配，则接收数据并查找上一层协议。如果上一层是TCP就传给TCP处理，如果是UDP则传给UDP处理。对于路由器，往往接收端地址不是自己的地址，此时需要借助路由控制表转发数据。</p>
+<h4 id="3）TCP模块的处理"><a href="#3）TCP模块的处理" class="headerlink" title="3）TCP模块的处理"></a>3）TCP模块的处理</h4><p>TCP模块首先会计算校验和，判断数据是否被破坏。然后检查是否按照序号接收数据。最后检查端口号，确定具体的应用程序。</p>
+<p>数据接收完毕后，接收端会发送一个“确认回执”给发送端。如果该信息一直未到达，那么发送端会认为接收端没有接收数据而一直反复发送。</p>
+<p>数据完整地接收以后，会传给由端口号识别的应用程序。</p>
+<h4 id="4）应用程序的处理"><a href="#4）应用程序的处理" class="headerlink" title="4）应用程序的处理"></a>4）应用程序的处理</h4><p>接收端应用程序会直接接收发送的数据。如果接收正常，会返回“处理正常”的回执，否则会发送相应的错误信息。<br><img src="https://img-blog.csdn.net/20180619215636897?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="3"></p>
+
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束<i class="fa fa-paw"></i>感谢阅读------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/21/【计算机网络】网络基础/" rel="next" title="【计算机网络】网络基础">
+                <i class="fa fa-chevron-left"></i> 【计算机网络】网络基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/21/【计算机网络】数据链路相关技术/" rel="prev" title="【计算机网络】数据链路相关技术">
+                【计算机网络】数据链路相关技术 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/picture.png"
+                alt="niliushall" />
+            
+              <p class="site-author-name" itemprop="name">niliushall</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/niliushall" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="sdwllinux@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/liushall" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数据包首部"><span class="nav-number">1.</span> <span class="nav-text">1.数据包首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-发送数据包"><span class="nav-number">2.</span> <span class="nav-text">2.发送数据包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）应用程序处理"><span class="nav-number">2.1.</span> <span class="nav-text">1）应用程序处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）TCP模块的处理"><span class="nav-number">2.2.</span> <span class="nav-text">2）TCP模块的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3）IP模块的处理"><span class="nav-number">2.3.</span> <span class="nav-text">3）IP模块的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4）网络接口（以太网驱动）的处理"><span class="nav-number">2.4.</span> <span class="nav-text">4）网络接口（以太网驱动）的处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-经过数据链路的包"><span class="nav-number">3.</span> <span class="nav-text">3.经过数据链路的包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-数据包接收处理"><span class="nav-number">4.</span> <span class="nav-text">4.数据包接收处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）网络接口（以太网驱动）的处理"><span class="nav-number">4.1.</span> <span class="nav-text">1）网络接口（以太网驱动）的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）IP模块的处理"><span class="nav-number">4.2.</span> <span class="nav-text">2）IP模块的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3）TCP模块的处理"><span class="nav-number">4.3.</span> <span class="nav-text">3）TCP模块的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4）应用程序的处理"><span class="nav-number">4.4.</span> <span class="nav-text">4）应用程序的处理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">niliushall</span>
+
+  
+
+  
+</div>
+
+<!--
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+</div>
+
+  #<div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+<
+  <span class="post-meta-divider">|</span>
+
+
+# 
+  #<div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+#
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

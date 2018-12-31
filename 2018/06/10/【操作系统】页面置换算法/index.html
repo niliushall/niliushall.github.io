@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="页面置换算法 在进程运行过程中，若需要访问的物理块不在内存中，就需要通过一定的方式来将页面载入内存，而此时内存很可能已无空闲空间，因此就需要一定的算法来选择内存中要被置换的页面，这种算法就被称为页面置换算法。页面置换算法的好坏，将直接影响系统的性能。 一个好的页面置换算法，应做到减少页面置换的频率。尽量将以后不会用到的或较长时间不会使用的页面给置换出。 下面介绍几种常用的页面置换算法。  1.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【操作系统】页面置换算法">
+<meta property="og:url" content="http://yoursite.com/2018/06/10/【操作系统】页面置换算法/index.html">
+<meta property="og:site_name" content="niliushall">
+<meta property="og:description" content="页面置换算法 在进程运行过程中，若需要访问的物理块不在内存中，就需要通过一定的方式来将页面载入内存，而此时内存很可能已无空闲空间，因此就需要一定的算法来选择内存中要被置换的页面，这种算法就被称为页面置换算法。页面置换算法的好坏，将直接影响系统的性能。 一个好的页面置换算法，应做到减少页面置换的频率。尽量将以后不会用到的或较长时间不会使用的页面给置换出。 下面介绍几种常用的页面置换算法。  1.">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://img-blog.csdn.net/20180610220957851?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180610221613397?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180610223007789?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2018-06-10T14:49:30.988Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【操作系统】页面置换算法">
+<meta name="twitter:description" content="页面置换算法 在进程运行过程中，若需要访问的物理块不在内存中，就需要通过一定的方式来将页面载入内存，而此时内存很可能已无空闲空间，因此就需要一定的算法来选择内存中要被置换的页面，这种算法就被称为页面置换算法。页面置换算法的好坏，将直接影响系统的性能。 一个好的页面置换算法，应做到减少页面置换的频率。尽量将以后不会用到的或较长时间不会使用的页面给置换出。 下面介绍几种常用的页面置换算法。  1.">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180610220957851?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/10/【操作系统】页面置换算法/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>【操作系统】页面置换算法 | niliushall</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d4924a2b4a414771c911ff4d6752e5cb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">niliushall</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/10/【操作系统】页面置换算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="niliushall">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/picture.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="niliushall">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【操作系统】页面置换算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-10 22:33:52 / Modified: 22:49:30" itemprop="dateCreated datePublished" datetime="2018-06-10T22:33:52+08:00">2018-06-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title=" 页面置换算法 "></a><center> 页面置换算法 </center></h1><p>在进程运行过程中，若需要访问的物理块不在内存中，就需要通过一定的方式来将页面载入内存，而此时内存很可能已无空闲空间，因此就需要一定的算法来选择内存中要被置换的页面，这种算法就被称为<code>页面置换算法</code>。页面置换算法的好坏，将直接影响系统的性能。</p>
+<p>一个好的页面置换算法，应做到减少页面置换的频率。尽量将以后不会用到的或较长时间不会使用的页面给置换出。</p>
+<p>下面介绍几种常用的页面置换算法。</p>
+<hr>
+<h3 id="1-最佳置换算法"><a href="#1-最佳置换算法" class="headerlink" title="1. 最佳置换算法"></a>1. 最佳置换算法</h3><p>该算法是一种理想化的算法，具有非常好的性能，但是由于目前无法预知未来，因此难以实现。</p>
+<p>该算法选择淘汰的页面是：<font color="green"><strong>未来永远不会再使用的页面 or 未来最长时间不再被访问的页面</strong></font>。该算法保证了可以获得最低缺页率，但无法预知未来页面的使用情况，因此目前无法实现，但通常用来评价其他算法。</p>
+<p>例：假定系统为某进程分配了三个物理块,并考虑有以下的页面号引用串:<br>7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1<br>进程运行时,先将 7,0,1 三个页面装入内存。以后,当进程要访问页面 2 时,将会产生缺页中断。此时 OS 根据最佳置换算法,将选择页面 7 予以淘汰。这是因为页面 0 将作为第 5 个被访问的页面,页面 1 是第 14 个被访问的页面,而页面 7 则要在第 18 次页面访问时才需调入。下次访问页面 0 时,因它已在内存而不必产生缺页中断。当进程访问页面 3时,又将引起页面 1 被淘汰;因为,它在现有的 1,2,0 三个页面中,将是以后最晚才被访问的。图 4-26 示出了采用最佳置换算法时的置换图。由图可看出,采用最佳置换算法发生了 6 次页面置换。</p>
+<p><img src="https://img-blog.csdn.net/20180610220957851?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="1"></p>
+<hr>
+<h3 id="2-先进先出（FIFO）页面置换算法"><a href="#2-先进先出（FIFO）页面置换算法" class="headerlink" title="2. 先进先出（FIFO）页面置换算法"></a>2. 先进先出（FIFO）页面置换算法</h3><p>该算法总是淘汰最先进入内存的页面,即选择在内存中驻留时间最久的页面予以淘汰。</p>
+<p>例：同上。当进程第一次访问页面 2 时,将把第 7 页换出,因为它是最先被调入内存的;在第一次访问页面 3 时,又将把第 0 页换出, 因为它在现有的 2, 0, 1 三个页面中是最老的页。 由图 4-27 可以看出,利用 FIFO 算法时进行了 12 次页面置换,比最佳置换算法正好多一倍。<br><img src="https://img-blog.csdn.net/20180610221613397?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="2"></p>
+<hr>
+<h3 id="3-最近最久未使用-LRU-算法"><a href="#3-最近最久未使用-LRU-算法" class="headerlink" title="3. 最近最久未使用(LRU)算法"></a>3. 最近最久未使用(LRU)算法</h3><p>该算法以过去预测未来，选择之前最长时间未使用的页面置换。但是由于利用“过去”作为“未来”的近似这一做法并非完全可靠，因此有时会造成缺页率非常高，导致效率会非常低。</p>
+<p>例：同上。当进程第一次对页面 2 进行访问时,由于页面 7 是最近最久未被访问的,故将它置换出去。当进程第一次对页面 3进行访问时,第 1 页成为最近最久未使用的页,将它换出。由图可以看出,前 5 个时间的图像与最佳置换算法时的相同,但这并非是必然的结果。因为,最佳置换算法是从“向后看”的观点出发的,即它是依据以后各页的使用情况;而 LRU 算法则“向前看”的,即根据各页以前的使用情况来判断,而页面过去和未来的走向之间并无必然的联系。</p>
+<p><img src="https://img-blog.csdn.net/20180610223007789?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdXNoYWxs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="3"></p>
+<hr>
+<h3 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h3><p>该部分代码使用vector来实现，未使用链表。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">        &gt; 测试数据</span></span><br><span class="line"><span class="comment">        &gt; 20</span></span><br><span class="line"><span class="comment">        &gt; 7 0 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1</span></span><br><span class="line"><span class="comment">        &gt; 3</span></span><br><span class="line"><span class="comment"> ************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PageReplacement</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; page;</span><br><span class="line">    <span class="keyword">int</span> page_num;  <span class="comment">//物理内存块数</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    PageReplacement() : page_num(<span class="number">0</span>) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">create</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">physical_block_print</span><span class="params">( <span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; )</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isfind</span><span class="params">( <span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;, <span class="keyword">int</span> )</span></span>;  <span class="comment">//查找是否已在内存物理块中</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">FIFO</span><span class="params">()</span></span>;  <span class="comment">//FIFO页面置换算法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">LRU</span><span class="params">()</span></span>;  <span class="comment">//LRU页面置换算法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OPT</span><span class="params">()</span></span>; <span class="comment">//OPT页面置换算法</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> PageReplacement::create() &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入页面个数: "</span>;</span><br><span class="line">    <span class="keyword">int</span> n, t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入页面串：\n"</span>;</span><br><span class="line">    <span class="keyword">while</span>( n-- ) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">        page.push_back( t );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入内存物理块数: "</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; page_num;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> PageReplacement::print() &#123;</span><br><span class="line">    <span class="keyword">int</span> n = page.size();</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"页面串:\n"</span>;</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++ ) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; page[i] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> PageReplacement::physical_block_print( <span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; t ) &#123;</span><br><span class="line">    <span class="keyword">int</span> n = t.size();</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++ ) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; t[i] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> PageReplacement::isfind( <span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; block, <span class="keyword">int</span> t ) &#123;</span><br><span class="line">    <span class="keyword">if</span> ( find( block.begin(), block.end(), t ) != block.end() ) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* FIFO页面置换算法 */</span></span><br><span class="line"><span class="keyword">void</span> PageReplacement::FIFO() &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; physical_block( page_num, <span class="number">-1</span> );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n = page.size(), cur = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> not_found = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"FIFO页面置换情况:\n"</span>;</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++ ) &#123;</span><br><span class="line">        <span class="keyword">if</span>( !isfind( physical_block, page[i] ) ) &#123;</span><br><span class="line">            physical_block[cur] = page[i];  <span class="comment">//页面置换</span></span><br><span class="line">            cur = (cur+<span class="number">1</span>)%page_num;</span><br><span class="line">            not_found++;</span><br><span class="line">        &#125;</span><br><span class="line">        physical_block_print( physical_block );  <span class="comment">//输出每个物理块信息</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"缺页次数："</span>&lt;&lt; not_found &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* LRU页面置换算法 */</span></span><br><span class="line"><span class="keyword">void</span> PageReplacement::LRU() &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; physical_block( page_num, <span class="number">-1</span> );</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; page_time;</span><br><span class="line">    <span class="keyword">int</span> n = page.size();</span><br><span class="line">    <span class="keyword">int</span> not_found = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++ ) &#123;</span><br><span class="line">        <span class="keyword">if</span> ( !isfind( physical_block, page[i] ) ) &#123;  <span class="comment">//当前页不在为物理块中</span></span><br><span class="line">            <span class="keyword">if</span> ( page_time.size() &lt; page_num ) &#123; <span class="comment">//物理块未放满</span></span><br><span class="line">                physical_block[i] = page[i];</span><br><span class="line">                page_time[page[i]] = i;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;  <span class="comment">//物理块放满，进行页面置换</span></span><br><span class="line">                <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::iterator it = page_time.begin(), t = it;</span><br><span class="line">                <span class="keyword">for</span>( it++; it != page_time.end(); it++ ) &#123;</span><br><span class="line">                    <span class="keyword">if</span> ( t-&gt;second &gt; it-&gt;second ) &#123;</span><br><span class="line">                        t = it;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> index;</span><br><span class="line">                <span class="keyword">for</span>( index = <span class="number">0</span>; index &lt; page_num &amp;&amp; physical_block[index]!=t-&gt;first; index++ )</span><br><span class="line">                    ;</span><br><span class="line">                physical_block[index] = page[i];</span><br><span class="line">                page_time.erase( t );</span><br><span class="line">                page_time[page[i]] = i;</span><br><span class="line">            &#125;</span><br><span class="line">            not_found++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  <span class="comment">//在物理块中，更新页面最后使用时间</span></span><br><span class="line">            page_time[page[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        physical_block_print( physical_block );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"缺页次数："</span>&lt;&lt; not_found &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* OPT页面置换算法 */</span></span><br><span class="line"><span class="keyword">void</span> PageReplacement::OPT() &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; physical_block( page_num, <span class="number">-1</span> );</span><br><span class="line">    <span class="keyword">int</span> n = page.size();</span><br><span class="line">    <span class="keyword">int</span> not_found = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++ ) &#123;</span><br><span class="line">        <span class="keyword">if</span>( !isfind( physical_block, page[i] ) ) &#123;  <span class="comment">//当前页不在物理块中</span></span><br><span class="line">            <span class="keyword">if</span>( i &lt; page_num ) &#123;  <span class="comment">//物理块未放满</span></span><br><span class="line">                physical_block[i] = page[i];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;  <span class="comment">//物理块放满,进行页面置换</span></span><br><span class="line">                <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; page_time;</span><br><span class="line">                <span class="keyword">int</span> k, j;</span><br><span class="line"></span><br><span class="line">                <span class="comment">/* 获取物理块中页面此后的最先使用时间 */</span></span><br><span class="line">                <span class="keyword">for</span>( j = <span class="number">0</span>; j &lt; page_num; j++ ) &#123; <span class="comment">//遍历physical_block</span></span><br><span class="line">                    <span class="keyword">for</span>( k = i+<span class="number">1</span>; k &lt; n; k++ ) &#123;  <span class="comment">//遍历page</span></span><br><span class="line">                        <span class="keyword">if</span>( physical_block[j] == page[k] ) &#123;</span><br><span class="line">                            page_time[page[k]] = k;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>( k == n ) &#123;</span><br><span class="line">                        page_time[physical_block[j]] = k;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">/* 寻找可以置换的页面 */</span></span><br><span class="line">                <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::iterator it = page_time.begin(), t = it;</span><br><span class="line">                <span class="keyword">for</span>( ; it != page_time.end(); it++ ) &#123;</span><br><span class="line">                    <span class="keyword">if</span> ( t-&gt;second &lt; it-&gt;second ) &#123;</span><br><span class="line">                        t = it;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">/* 获取被置换页面在物理块的下标 */</span></span><br><span class="line">                <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span>( ; index &lt; page_num &amp;&amp; physical_block[index] != t-&gt;first; index++ )</span><br><span class="line">                    ;</span><br><span class="line">                physical_block[index] = page[i];</span><br><span class="line">            &#125;</span><br><span class="line">            not_found++;</span><br><span class="line">        &#125;</span><br><span class="line">        physical_block_print( physical_block );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"缺页次数："</span>&lt;&lt; not_found &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    PageReplacement t;</span><br><span class="line">    t.create();</span><br><span class="line">    <span class="comment">// t.FIFO();</span></span><br><span class="line">    t.LRU();</span><br><span class="line">    <span class="comment">// t.OPT();</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束<i class="fa fa-paw"></i>感谢阅读------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/13/解决ubuntu18读写ntfs文件/" rel="prev" title="解决ubuntu18读写ntfs文件">
+                解决ubuntu18读写ntfs文件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/picture.png"
+                alt="niliushall" />
+            
+              <p class="site-author-name" itemprop="name">niliushall</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/niliushall" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="sdwllinux@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/liushall" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#页面置换算法"><span class="nav-number">1.</span> <span class="nav-text"> 页面置换算法 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-最佳置换算法"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 最佳置换算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-先进先出（FIFO）页面置换算法"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 先进先出（FIFO）页面置换算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-最近最久未使用-LRU-算法"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. 最近最久未使用(LRU)算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-代码实现"><span class="nav-number">1.0.4.</span> <span class="nav-text">4. 代码实现</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">niliushall</span>
+
+  
+
+  
+</div>
+
+<!--
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+</div>
+
+  #<div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+<
+  <span class="post-meta-divider">|</span>
+
+
+# 
+  #<div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+#
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

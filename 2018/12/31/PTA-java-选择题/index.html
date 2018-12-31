@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="选择题1、About JIT JVM, which statement below is correct?    The compiler generates native code for JIT JVM.  There is a special translator to convert byte code into native code before its loading into th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[PTA-java]选择题">
+<meta property="og:url" content="http://yoursite.com/2018/12/31/PTA-java-选择题/index.html">
+<meta property="og:site_name" content="niliushall">
+<meta property="og:description" content="选择题1、About JIT JVM, which statement below is correct?    The compiler generates native code for JIT JVM.  There is a special translator to convert byte code into native code before its loading into th">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/iHuIpeG.png">
+<meta property="og:image" content="https://i.imgur.com/qIMpHVZ.png">
+<meta property="og:image" content="https://i.imgur.com/TAQgntO.png">
+<meta property="og:image" content="https://i.imgur.com/7HEk0ON.png">
+<meta property="og:updated_time" content="2018-12-31T08:44:05.960Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[PTA-java]选择题">
+<meta name="twitter:description" content="选择题1、About JIT JVM, which statement below is correct?    The compiler generates native code for JIT JVM.  There is a special translator to convert byte code into native code before its loading into th">
+<meta name="twitter:image" content="https://i.imgur.com/iHuIpeG.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/31/PTA-java-选择题/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[PTA-java]选择题 | niliushall</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d4924a2b4a414771c911ff4d6752e5cb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">niliushall</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/PTA-java-选择题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="niliushall">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/picture.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="niliushall">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[PTA-java]选择题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-31 16:43:03 / Modified: 16:44:05" itemprop="dateCreated datePublished" datetime="2018-12-31T16:43:03+08:00">2018-12-31</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PTA/" itemprop="url" rel="index"><span itemprop="name">PTA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="选择题"><a href="#选择题" class="headerlink" title="选择题"></a>选择题</h1><p>1、About JIT JVM, which statement below is correct? </p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> The compiler generates native code for JIT JVM.</li>
+<li style="list-style: none"><input type="checkbox"> There is a special translator to convert byte code into native code before its loading into the JVM.</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>It is the JVM that translates the byte code into native during the loading of the class.</strong></li>
+<li style="list-style: none"><input type="checkbox"> Java Native Invoking is the way JIT JVM does to make program run faster.</li>
+</ul>
+<p>2、下列不可作为java语言标识符的是（）。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> a2</li>
+<li style="list-style: none"><input type="checkbox"> $2</li>
+<li style="list-style: none"><input type="checkbox"> _2</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>22</strong></li>
+</ul>
+<p>3、编译Java源程序文件将产生相应的字节码文件，这些字节码文件的扩展名为( )。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> .byte</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>.class</strong></li>
+<li style="list-style: none"><input type="checkbox"> .html</li>
+<li style="list-style: none"><input type="checkbox"> .exe</li>
+</ul>
+<p>4、在Java中，负责对字节代码解释执行的是（ ）。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 应用服务器</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>虚拟机</strong></li>
+<li style="list-style: none"><input type="checkbox"> 垃圾回收器</li>
+<li style="list-style: none"><input type="checkbox"> 编译器</li>
+</ul>
+<p>5、下面哪单词是Java语言的关键字（ ）。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> Float</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>this</strong></li>
+<li style="list-style: none"><input type="checkbox"> string</li>
+<li style="list-style: none"><input type="checkbox"> unsigned</li>
+</ul>
+<p>6、What must all Java applications contain? (2分)</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> an applet</li>
+<li style="list-style: none"><input type="checkbox"> a final class</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>a main method</strong></li>
+<li style="list-style: none"><input type="checkbox"> an applet class</li>
+</ul>
+<p>7、What is the extension of a Java bytecode file? </p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> <strong>.class</strong></li>
+<li style="list-style: none"><input type="checkbox"> .cls</li>
+<li style="list-style: none"><input type="checkbox"> .java</li>
+<li style="list-style: none"><input type="checkbox"> .jvm</li>
+</ul>
+<p>8、以下关于构造函数的描述<strong>错误</strong>的是（ ）。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> <strong>构造函数的返回类型只能是void型。</strong></li>
+<li style="list-style: none"><input type="checkbox"> 构造函数是类的一种特殊函数，它的方法名必须与类名相同。</li>
+<li style="list-style: none"><input type="checkbox"> 构造函数的主要作用是完成对类的对象的初始化工作。</li>
+<li style="list-style: none"><input type="checkbox"> 一般在创建新对象时，系统会自动调用构造函数。</li>
+</ul>
+<p>9、下面哪个函数是public void aMethod(){…}的重载函数？（ ） </p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> void aMethod( ){…}</li>
+<li style="list-style: none"><input type="checkbox"> public int aMethod(){…}</li>
+<li style="list-style: none"><input type="checkbox"> public void aMethod ( ){…}</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>public int aMethod ( int m){…}</strong></li>
+</ul>
+<p>10、关于被私有访问控制符private修饰的成员变量，以下说法正确的是（ ）</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 可以被三种类所引用：该类自身、与它在同一个包中的其他类、在其他包中的该类的子类</li>
+<li style="list-style: none"><input type="checkbox"> 可以被两种类访问和引用：该类本身、该类的所有子类</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>只能被该类自身所访问和修改</strong></li>
+<li style="list-style: none"><input type="checkbox"> 只能被同一个包中的类访问</li>
+</ul>
+<p>11、下面关于缺省构造方法的描述中正确的是（ ）。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> <strong>当类中没有定义任何构造方法时，Java编译器将为这个类创建缺省构造方法</strong></li>
+<li style="list-style: none"><input type="checkbox"> 缺省构造方法可以初始化其他方法中定义的变量</li>
+<li style="list-style: none"><input type="checkbox"> Java编译器会为所有的类创建缺省构造方法。</li>
+<li style="list-style: none"><input type="checkbox"> 如果在一个类中定义的构造方法都声明了参数，Java编译器将为这个类创建一个缺省构造方法</li>
+</ul>
+<p>12、对于类与对象的关系，以下说法<strong>错误</strong>的是（ ）。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 类是对象的类型</li>
+<li style="list-style: none"><input type="checkbox"> 对象由类来创建</li>
+<li style="list-style: none"><input type="checkbox"> 类是同类对象的抽象</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>对象是创建类的模板</strong></li>
+</ul>
+<p>13、下列哪些语句关于Java内存回收的说明是正确的? （ ）</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 程序员必须创建一个线程来释放内存</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>内存回收程序负责释放无用内存</strong></li>
+<li style="list-style: none"><input type="checkbox"> 内存回收程序允许程序员直接释放内存</li>
+<li style="list-style: none"><input type="checkbox"> 内存回收程序可以在指定的时间释放内存对象</li>
+</ul>
+<p>14、在Java中，负责对字节代码解释执行的是 （ ）</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 应用服务器</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>虚拟机</strong></li>
+<li style="list-style: none"><input type="checkbox"> 垃圾回收器</li>
+<li style="list-style: none"><input type="checkbox"> 编译器</li>
+</ul>
+<font color="red"><strong>15、With the code below, the output is: (2分)</strong></font><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="number">2</span>&gt;<span class="number">5</span>?<span class="number">1.0</span>:<span class="number">1</span>);</span><br></pre></td></tr></table></figure><br><br>- [x] <strong>1.0</strong><br>- [ ] 1<br>- [ ] compile error<br>- [ ] run-time exception<br><br><font color="red"><strong>16、以下程序段的输出结果是</strong></font><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="number">4</span> + <span class="number">5</span> + <span class="string">""</span> + <span class="number">3</span> + <span class="number">6</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>- [ ] 99<br>- [ ] 4536<br>- [x] <strong>936</strong><br>- [ ] 459<br><br>17、下面关于缺省构造方法的描述中正确的是（ ）。<br><br>- [x] <strong>当类中没有定义任何构造方法时，Java编译器将为这个类创建缺省构造方法</strong><br>- [ ] 缺省构造方法可以初始化其他方法中定义的变量<br>- [ ] Java编译器会为所有的类创建缺省构造方法。<br>- [ ] 如果在一个类中定义的构造方法都声明了参数，Java编译器将为这个类创建一个缺省构造方法<br><br><br>18、下述哪条关于构造方法的说法，不符合Java语法的规定（ ）。<br><br>- [ ] 每个类至少有一个构造方法<br>- [ ] 构造方法必须与类同名<br>- [x] <strong>构造方法无返回值，其返回值类型必须写为void</strong><br>- [ ] 构造方法可以是private的<br><br><br>19、关于以下程序代码的说明正确的是（ ） 。<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span>  <span class="title">HasStatic</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">static</span>  <span class="keyword">int</span>  x=<span class="number">100</span>；</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title">main</span><span class="params">(String[  ]  args)</span></span>&#123; </span><br><span class="line">        HasStatic  hs1=<span class="keyword">new</span>  HasStatic(  ); </span><br><span class="line">        hs1.x++;</span><br><span class="line">        HasStatic  hs2=<span class="keyword">new</span>  HasStatic(  ); </span><br><span class="line">        hs2.x++;</span><br><span class="line">        hs1=<span class="keyword">new</span>  HasStatic( ); </span><br><span class="line">        hs1.x++;</span><br><span class="line">        HasStatic.x--;</span><br><span class="line">        System.out.println(“x=”+x); </span><br><span class="line">     &#125; </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><br><br>- [ ] 5行不能通过编译，因为引用了私有静态变量<br>- [ ] 10行不能通过编译，因为x是私有静态变量<br>- [ ] 程序通过编译，输出结果为：x=103<br>- [x] <strong>程序通过编译，输出结果为：x=102</strong><br><br><br><font color="red"><strong>20、若需要定义一个类属性或类方法，应使用哪种修饰符？（ ）</strong></font>
+
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> static</li>
+<li style="list-style: none"><input type="checkbox"> package</li>
+<li style="list-style: none"><input type="checkbox"> private</li>
+<li style="list-style: none"><input type="checkbox"> public</li>
+</ul>
+<p>21、在Java中用什么关键字修饰的方法可以直接通过类名来调用？（ ） </p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> <strong>static</strong></li>
+<li style="list-style: none"><input type="checkbox"> final</li>
+<li style="list-style: none"><input type="checkbox"> private</li>
+<li style="list-style: none"><input type="checkbox"> void</li>
+</ul>
+<p>22、下列关于System类的叙述中，<strong>错误</strong>的是（ ）。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> System类是一个final类</li>
+<li style="list-style: none"><input type="checkbox"> System类不能实例化</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>System类中没有定义属性</strong></li>
+<li style="list-style: none"><input type="checkbox"> System类主要提供了系统环境参数的访问</li>
+</ul>
+<p>23、定义了一维int型数组a[10]后，下面<strong>错误</strong>的引用是(　) 。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> a[0]=1</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>a[10]=2</strong></li>
+<li style="list-style: none"><input type="checkbox"> a[0]=5*2</li>
+<li style="list-style: none"><input type="checkbox"> a[1]=a[2]*a[0]</li>
+</ul>
+<p>24、下面程序的运行结果是（ ）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">main() &#123;</span><br><span class="line">    <span class="keyword">int</span> x=<span class="number">30</span>;</span><br><span class="line">    <span class="keyword">int</span>[] numbers=<span class="keyword">new</span> <span class="keyword">int</span>[x];</span><br><span class="line">    x=<span class="number">60</span>;</span><br><span class="line">    System.out.println(numbers.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 60</li>
+<li style="list-style: none"><input type="checkbox"> 20</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>30</strong></li>
+<li style="list-style: none"><input type="checkbox"> 50</li>
+</ul>
+<p>25、关于char类型的数组，说法正确的是( )。 </p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 其数组的默认值是’A’</li>
+<li style="list-style: none"><input type="checkbox" checked> 可以仅通过数组名来访问数组</li>
+<li style="list-style: none"><input type="checkbox"> 数组不能转换为字符串</li>
+<li style="list-style: none"><input type="checkbox"> 可以存储整型数值</li>
+</ul>
+<p>26、Which one below is correct to define and create an array? ( ) </p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> int a[5];</li>
+<li style="list-style: none"><input type="checkbox"> int a[] = new [5];</li>
+<li style="list-style: none"><input type="checkbox" checked> <strong>int a[] = {1,2,3,4,5};</strong></li>
+<li style="list-style: none"><input type="checkbox"> int a = new int[5];</li>
+</ul>
+<p>27、给出下面代码，关于该程序以下哪个说法是正确的？（ ） (2分)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;  </span><br><span class="line">     <span class="keyword">static</span> <span class="keyword">int</span> arr[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>]; </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String a[])</span> </span>&#123;  </span><br><span class="line">          System.out.println(arr[<span class="number">0</span>]);</span><br><span class="line">     &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 编译时将产生错误</li>
+<li style="list-style: none"><input type="checkbox"> 编译时正确，运行时将产生错误</li>
+<li style="list-style: none"><input type="checkbox" checked> 输出0</li>
+<li style="list-style: none"><input type="checkbox"> 输出空</li>
+</ul>
+<p>28、下列语句会造成数组new int[10]越界是（ ）。 (2分)</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> a[0] += 9;</li>
+<li style="list-style: none"><input type="checkbox"> a[9]=10;</li>
+<li style="list-style: none"><input type="checkbox"> a[9]</li>
+<li style="list-style: none"><input type="checkbox" checked> for(int i=0;i&lt;=10;i++) a[i]++;</li>
+</ul>
+<p>29、What will happen if you try to compile and run the following code?(2分)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Q</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String argv[])</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> anar[]=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];</span><br><span class="line">        System.out.println(anar[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> Error: anar is referenced before it is initialized</li>
+<li style="list-style: none"><input type="checkbox"> null</li>
+<li style="list-style: none"><input type="checkbox" checked> 0</li>
+<li style="list-style: none"><input type="checkbox"> 5</li>
+</ul>
+<p>30、当访问无效的数组下标时，会发生（ ）。 (2分)</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 中止程序</li>
+<li style="list-style: none"><input type="checkbox" checked> 抛出异常</li>
+<li style="list-style: none"><input type="checkbox"> 系统崩溃</li>
+<li style="list-style: none"><input type="checkbox"> 直接跳过</li>
+</ul>
+<p>31、执行下面代码,下面描述正确的是( )。 (2分)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">   <span class="keyword">static</span> <span class="keyword">int</span> arr[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String a[])</span></span>&#123;</span><br><span class="line">     System.out.println(arr[<span class="number">1</span>]);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 产生编译错误</li>
+<li style="list-style: none"><input type="checkbox"> 输出空</li>
+<li style="list-style: none"><input type="checkbox"> 编译正确,运行错误</li>
+<li style="list-style: none"><input type="checkbox" checked> 输出0</li>
+</ul>
+<p>32、What is the index of the last element in an array? </p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> The size of the array.</li>
+<li style="list-style: none"><input type="checkbox"> The number that is specified as the last element.</li>
+<li style="list-style: none"><input type="checkbox"> The index depends on the number of bytes used by each element.</li>
+<li style="list-style: none"><input type="checkbox" checked> The size of the array minus one</li>
+</ul>
+<p>33、<img src="https://i.imgur.com/iHuIpeG.png" alt=""></p>
+<p>34、<img src="https://i.imgur.com/qIMpHVZ.png" alt=""></p>
+<p><img src="https://i.imgur.com/TAQgntO.png" alt=""></p>
+<p>35、以下代码段将创建几个对象?<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s1=<span class="string">"bc"</span>;</span><br><span class="line">String s2=<span class="string">"bc"</span>;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 2</li>
+<li style="list-style: none"><input type="checkbox"> 3</li>
+<li style="list-style: none"><input type="checkbox"> 0</li>
+<li style="list-style: none"><input type="checkbox" checked> 1</li>
+</ul>
+<p><strong>36、For String s;, which statement below is correct?</strong></p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> s is a variable not initialized, and is to be a pointer to an object of String.</li>
+<li style="list-style: none"><input type="checkbox"> At this line, s is a variable holding an object of String.</li>
+<li style="list-style: none"><input type="checkbox"> It will hold an object of String, given s a member variable,.</li>
+<li style="list-style: none"><input type="checkbox"> It will hold an object of String, given s a local variable.</li>
+</ul>
+<p>37、<img src="https://i.imgur.com/7HEk0ON.png" alt=""></p>
+<p>38、A JavaFX action event handler contains a method __.</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> public void actionPerformed(ActionEvent e)</li>
+<li style="list-style: none"><input type="checkbox"> public void handle(Event e)</li>
+<li style="list-style: none"><input type="checkbox"> public void actionPerformed(Event e)</li>
+<li style="list-style: none"><input type="checkbox"> public void handle(ActionEvent e)</li>
+</ul>
+<p>39、A JavaFX event handler for event type T is an instance of _. </p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> EventHandler</li>
+<li style="list-style: none"><input type="checkbox"> ActionEvent</li>
+<li style="list-style: none"><input type="checkbox"> Action</li>
+<li style="list-style: none"><input type="checkbox"> EventHandler</li>
+</ul>
+<p>40、To handle the mouse click event on a pane p, register the handler with p using __. (2分)</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> p.setOnMouseClicked(handler);</li>
+<li style="list-style: none"><input type="checkbox"> p.setOnMouseReleased(handler);</li>
+<li style="list-style: none"><input type="checkbox"> p.setOnMouseDragged(handler);</li>
+<li style="list-style: none"><input type="checkbox"> p.setOnMousePressed(handler);</li>
+</ul>
+<p>41、Fill in the code below in the underline: (2分)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Test test = <span class="keyword">new</span> Test();</span><br><span class="line">test.setAction(__);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAction</span><span class="params">(T1 t)</span> </span>&#123;</span><br><span class="line">t.m();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">T1</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">m</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> (e) -&gt; {System.out.print(“Action 1! “)}</li>
+<li style="list-style: none"><input type="checkbox"> (e) -&gt; System.out.print(“Action 1! “)</li>
+<li style="list-style: none"><input type="checkbox"> () -&gt; System.out.print(“Action 1! “)</li>
+<li style="list-style: none"><input type="checkbox"> System.out.print(“Action 1! “)</li>
+</ul>
+<p>42、The statement for registering a listener for processing list view item change is _. (2分)</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> lv.getItems().addListener(e -&gt; {processStatements});</li>
+<li style="list-style: none"><input type="checkbox"> lv.addListener(e -&gt; {processStatements});</li>
+<li style="list-style: none"><input type="checkbox"> lv.getSelectionModel().selectedItemProperty().addListener(e -&gt; {processStatements});</li>
+<li style="list-style: none"><input type="checkbox"> lv.getSelectionModel().addListener(e -&gt; {processStatements});</li>
+</ul>
+<p>43、下面哪个流类属于面向字符的输入流( ) 。 </p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> BufferedWriter</li>
+<li style="list-style: none"><input type="checkbox"> FileInputStream</li>
+<li style="list-style: none"><input type="checkbox"> ObjectInputStream</li>
+<li style="list-style: none"><input type="checkbox" checked> InputStreamReader</li>
+</ul>
+<p>44、FilterOutputStream is the parent class for BufferedOutputStream, DataOutputStream and PrintStream. Which classes are valid argument for the constructor of a FilterOutputStream? （ ） </p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> InputStream</li>
+<li style="list-style: none"><input type="checkbox" checked> OutputStream</li>
+<li style="list-style: none"><input type="checkbox"> RandomAccessFile</li>
+<li style="list-style: none"><input type="checkbox"> StreamTokenizer</li>
+</ul>
+<p>45、如果需要从文件中读取数据，则可以在程序中创建哪一个类的对象（）。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> FileInputStream</li>
+<li style="list-style: none"><input type="checkbox"> FileOutputStream</li>
+<li style="list-style: none"><input type="checkbox"> DataOutputStream</li>
+<li style="list-style: none"><input type="checkbox"> FileWriter</li>
+</ul>
+<p>46、Suppose there is no file Hello.txt in the current directory. Run the program:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ABC</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String argv[])</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		ABC m=<span class="keyword">new</span> ABC();</span><br><span class="line">		System.out.println(m.ff());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">ff</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			FileInputStream dis=<span class="keyword">new</span> FileInputStream(<span class="string">"Hello.txt"</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (FileNotFoundException fne) &#123;</span><br><span class="line">			System.out.print(<span class="string">"No such file found, "</span>);</span><br><span class="line">			<span class="keyword">throw</span> fne;</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			System.out.print(<span class="string">"Doing finally, "</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> No such file found,</li>
+<li style="list-style: none"><input type="checkbox"> No such file found ,0</li>
+<li style="list-style: none"><input type="checkbox"> No such file found, Doing finally,</li>
+<li style="list-style: none"><input type="checkbox"> No such file found, Doing finally, 0</li>
+</ul>
+<p>47、Below is the function header for write() in OutputStream<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void write(int b)</span><br></pre></td></tr></table></figure></p>
+<p>Now given code below, what would be the size and the content of the output file?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int i=0xcafebabe;</span><br><span class="line">FileOutputStream out = new FileOutputStream(&quot;output&quot;);</span><br><span class="line">out.write(i);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 1 byte and 0xbe</li>
+<li style="list-style: none"><input type="checkbox"> 1 byte and 0xca</li>
+<li style="list-style: none"><input type="checkbox"> 4 bytes as 0xcafebabe</li>
+<li style="list-style: none"><input type="checkbox"> 4 bytes as 0xbebafeca</li>
+</ul>
+<p>48、For InputStream.read(), the read() with no parameters, which statement below is correct? </p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> read() returns int, because it has to return EOF to indicate the end of the file</li>
+<li style="list-style: none"><input type="checkbox"> read() returns byte, because it reads a byte from the stream</li>
+<li style="list-style: none"><input type="checkbox"> read() returns char, because it reads a char from the stream</li>
+<li style="list-style: none"><input type="checkbox"> read() returns int, as the number of bytes it just read</li>
+</ul>
+<p>49、以下哪个方法用于定义线程的执行体？ （ ）</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> start()</li>
+<li style="list-style: none"><input type="checkbox"> init()</li>
+<li style="list-style: none"><input type="checkbox" checked> run()</li>
+<li style="list-style: none"><input type="checkbox"> ynchronized()</li>
+</ul>
+<p>50、一个线程在任何时刻都处于某种线程状态（thread state）,例如运行状态、阻塞状态、就绪状态等。一个线程可以由选项中的哪种线程状态直接到达运行状态？( ) </p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 死亡状态</li>
+<li style="list-style: none"><input type="checkbox"> 阻塞状态（对象lock池内）</li>
+<li style="list-style: none"><input type="checkbox"> 阻塞状态（对象wait池内）</li>
+<li style="list-style: none"><input type="checkbox" checked> 就绪状态</li>
+</ul>
+<p>51、下列哪个方法可以使线程从运行状态进入其他阻塞状态（ ）。 </p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> sleep()</li>
+<li style="list-style: none"><input type="checkbox" checked> wait()</li>
+<li style="list-style: none"><input type="checkbox"> yield()</li>
+<li style="list-style: none"><input type="checkbox"> start()</li>
+</ul>
+<p>52、用（ ）方法可以改变线程的优先级。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> run()</li>
+<li style="list-style: none"><input type="checkbox" checked> setPrority()</li>
+<li style="list-style: none"><input type="checkbox"> yield()</li>
+<li style="list-style: none"><input type="checkbox"> sleep()</li>
+</ul>
+<p>53、下列说法<strong>错误</strong>的一项是：（ ）。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> Java中的第一个线程都属于某个线程组。</li>
+<li style="list-style: none"><input type="checkbox" checked> 线程只能在其创建时设置所属的线程组。</li>
+<li style="list-style: none"><input type="checkbox"> 线程创建之后可以从一个线程组转移到另一个线程组。</li>
+<li style="list-style: none"><input type="checkbox"> 新建的线程默认情况下属于其父线程所属的线程组。</li>
+</ul>
+<p>54、下列哪个一个操作不能使线程从等待阻塞状态进入对象阻塞状态（ ）。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> 等待阻塞状态下的线程被notify()唤醒</li>
+<li style="list-style: none"><input type="checkbox"> 等待阻塞状态下的纯种被interrput()中断</li>
+<li style="list-style: none"><input type="checkbox"> 等待时间到</li>
+<li style="list-style: none"><input type="checkbox"> 等待阻塞状态下的线程调用wait()方法</li>
+</ul>
+<p>55、Given the following code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Background</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">"hello"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Background()).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>What will happen when you attempt to compile and run the code?.</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> It compiles and prints out “hello” repeatedly</li>
+<li style="list-style: none"><input type="checkbox"> It compiles and prints out nothing.</li>
+<li style="list-style: none"><input type="checkbox" checked> It does not compile because of the function signature of run()</li>
+<li style="list-style: none"><input type="checkbox"> It does not compile because of the expression inside main()</li>
+</ul>
+<p>56、关于sleep()和wait()，以下描述<strong>错误</strong>的一项是（ ）。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> sleep是线程类（Thread）的方法，wait是Object类的方法；</li>
+<li style="list-style: none"><input type="checkbox"> sleep不释放对象锁，wait放弃对象锁；</li>
+<li style="list-style: none"><input type="checkbox"> sleep暂停线程、但监控状态仍然保持，结束后会自动恢复；</li>
+<li style="list-style: none"><input type="checkbox" checked> wait后进入等待锁定池，只有针对此对象发出notify方法后获得对象锁进入运行状态。</li>
+</ul>
+<p>57、Which method you define as the starting point of new thread in a class from which new the thread can be excution? （ ）</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> public void start()</li>
+<li style="list-style: none"><input type="checkbox" checked> public void run()</li>
+<li style="list-style: none"><input type="checkbox"> public void int()</li>
+<li style="list-style: none"><input type="checkbox"> public static void main(String args[])</li>
+</ul>
+<p>58、下面说法正确的是（ ）</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> JAVA中线程是非抢占式的</li>
+<li style="list-style: none"><input type="checkbox"> JAVA中的线程不可以共享数据</li>
+<li style="list-style: none"><input type="checkbox" checked> 每个JAVA程序都至少有一个线程，即主线程</li>
+<li style="list-style: none"><input type="checkbox"> JAVA中的线程不可以共享代码</li>
+</ul>
+
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束<i class="fa fa-paw"></i>感谢阅读------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/22/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/31/PTA-java-判断题/" rel="prev" title="[PTA-java]填空题">
+                [PTA-java]填空题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/picture.png"
+                alt="niliushall" />
+            
+              <p class="site-author-name" itemprop="name">niliushall</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/niliushall" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="sdwllinux@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/liushall" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选择题"><span class="nav-number">1.</span> <span class="nav-text">选择题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">niliushall</span>
+
+  
+
+  
+</div>
+
+<!--
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+</div>
+
+  #<div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+<
+  <span class="post-meta-divider">|</span>
+
+
+# 
+  #<div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+#
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
