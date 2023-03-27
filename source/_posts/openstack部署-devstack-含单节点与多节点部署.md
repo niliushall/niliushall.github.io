@@ -1,6 +1,7 @@
 ---
 title: openstack部署-devstack(含单节点与多节点部署)
 date: 2023-03-27 18:59:23
+description: 本文采用 DevStack 部署 OpenStack（W版本），包含单节点部署与多节点部署。
 tags:
   - OpenStack
   - DevStack
@@ -9,7 +10,7 @@ categories:
 ---
 
 本文采用 DevStack 部署 OpenStack（W版本），包含单节点部署与多节点部署。
-<--! more -->
+<!-- more -->
 
 [toc]
 

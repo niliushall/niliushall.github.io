@@ -1,7 +1,7 @@
 ---
-layout: post
 title: Java网络编程
 date: 2023-03-27 22:13:27
+description: 本文主要介绍Java网络编程相关基础知识。
 tags:
     - Java
     - 网络编程
