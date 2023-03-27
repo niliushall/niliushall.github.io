@@ -30,9 +30,15 @@ jobs:
 
       - name: Build
         run: npm run build
+     
+      - name: Generate
+        run: |
+          hexo clean
+          hexo generate
       
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.HEXO_TOKEN }}
-          publish_dir: ./public
+        run: |
+          git config --global user.name 'niliushall'
+          git config --global user.email '1459775963@qq.com'
+          # git clone https://github.com/GC-ZF/GC-ZF.github.io.git .deploy_git
+          hexo deploy
