@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://www.wangliang.ml/2023/03/27/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</loc>
+    
+    <lastmod>2023-03-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.wangliang.ml/2023/03/27/openstack%E9%83%A8%E7%BD%B2-devstack-%E5%90%AB%E5%8D%95%E8%8A%82%E7%82%B9%E4%B8%8E%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/</loc>
+    
+    <lastmod>2023-03-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.wangliang.ml/about/index.html</loc>
+    
+    <lastmod>2023-03-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.wangliang.ml/categories/index.html</loc>
+    
+    <lastmod>2023-03-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.wangliang.ml/tags/index.html</loc>
+    
+    <lastmod>2023-03-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>https://www.wangliang.ml/</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://www.wangliang.ml/tags/Java/</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.wangliang.ml/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.wangliang.ml/tags/OpenStack/</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.wangliang.ml/tags/DevStack/</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://www.wangliang.ml/categories/Java/</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.wangliang.ml/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+</urlset>
