@@ -1,8 +1,8 @@
-https://www.wangliang.ml/2023/03/27/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/
 https://www.wangliang.ml/2023/03/27/openstack%E9%83%A8%E7%BD%B2-devstack-%E5%90%AB%E5%8D%95%E8%8A%82%E7%82%B9%E4%B8%8E%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/
 https://www.wangliang.ml/about/index.html
 https://www.wangliang.ml/categories/index.html
 https://www.wangliang.ml/tags/index.html
+https://www.wangliang.ml/2023/03/27/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/
 https://www.wangliang.ml/
 https://www.wangliang.ml/tags/Java/
 https://www.wangliang.ml/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/
