@@ -138,6 +138,10 @@ cover:
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
     - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
+    - https://th.wallhaven.cc/small/qz/qzdqvr.jpg
+    - https://th.wallhaven.cc/small/kx/kx36mq.jpg
+    - https://images2.alphacoders.com/742/thumbbig-742320.webp
+    - https://images6.alphacoders.com/613/thumbbig-613932.webp
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
