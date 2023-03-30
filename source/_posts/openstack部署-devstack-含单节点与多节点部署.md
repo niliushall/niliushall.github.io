@@ -7,6 +7,7 @@ tags:
   - DevStack
 categories:
   - 云计算
+cover: http://cdn-hw-static.shanhutech.cn/bizhi/staticwp/202301/96e937e9b89fd307419ef5ba370c5b4d--2850730840.jpg
 ---
 
 本文采用 DevStack 部署 OpenStack（W版本），包含单节点部署与多节点部署。
