@@ -1,7 +1,10 @@
 ---
 title: Python日志库logging
-tags: [Python, logging]
-categories: [Python]
+tags: 
+    - Python
+    - logging
+categories: 
+    - Python
 date: 2023-03-30 15:33:05
 description: Python日志库logging的使用
 cover: http://cdn-hw-static.shanhutech.cn/bizhi/staticwp/202212/13746e6880e009d49378a81f0dec5474--569975149.jpg

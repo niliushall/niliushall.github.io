@@ -1,7 +1,9 @@
 ---
 title: C++函数指针
-tags: [C++]
-categories: [C++]
+tags: 
+    - C++
+categories: 
+    - C++
 date: 2023-03-30 15:18:44
 description: C++函数指针的使用
 cover: http://cdn-hw-static.shanhutech.cn/bizhi/staticwp/202208/602572f742ea665fb55e1691954ce09b--889050502.jpg

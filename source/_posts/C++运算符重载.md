@@ -1,7 +1,10 @@
 ---
 title: C++运算符重载
-tags: [C++, 重载]
-categories: [C++]
+tags: 
+    - C++
+    - 重载
+categories: 
+    - C++
 date: 2023-03-30 15:20:06
 description: 介绍C++运算符重载，主要是输入输出运算符的重载
 cover: http://cdn-hw-static.shanhutech.cn/bizhi/staticwp/202302/5ccf4ce9f65b075e980a4bd3587a68f6--1444630449.jpg

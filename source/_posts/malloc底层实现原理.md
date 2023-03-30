@@ -1,7 +1,11 @@
 ---
 title: malloc底层实现原理
-tags: [malloc, 实现原理]
-categories: [c++, 内存管理]
+tags: 
+    - malloc
+    - 内存管理
+categories: 
+    - C++
+    - 内存管理
 date: 2023-03-30 15:22:00
 description: malloc函数的底层实现原理
 cover: http://cdn-hw-static.shanhutech.cn/bizhi/staticwp/202301/c6c2f1e7537abae1dddb32dcc4dc94da--3750712376.jpg
