@@ -169,7 +169,7 @@
       
       <categories>
           
-          <category> c++ </category>
+          <category> C++ </category>
           
           <category> 内存管理 </category>
           
@@ -178,9 +178,9 @@
       
         <tags>
             
-            <tag> malloc </tag>
+            <tag> 内存管理 </tag>
             
-            <tag> 实现原理 </tag>
+            <tag> malloc </tag>
             
         </tags>
       
