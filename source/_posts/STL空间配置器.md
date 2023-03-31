@@ -4,8 +4,8 @@ tags:
     - STL
     - 内存管理
 categories: 
+    - C++
     - STL
-    - 内存管理
 date: 2023-03-30 15:23:42
 description: STL空间配置器的底层实现原理
 cover: http://cdn-hw-static.shanhutech.cn/bizhi/staticwp/202212/d74da9edd43874e8dd4df6b51ba60254--2856100756.jpg
