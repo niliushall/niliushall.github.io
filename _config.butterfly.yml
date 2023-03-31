@@ -42,6 +42,7 @@ copy:
 social:
   fab fa-github: https://github.com/niliushall || Github
   fas fa-envelope: mailto:niliushall@qq.com || Email
+  fas fa-right-to-bracket: https://blog.csdn.net/liushall || CSDN
 
 # search (搜索)
 # see https://butterfly.js.org/posts/ceeb73f/#搜索系統
